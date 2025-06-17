@@ -28,8 +28,7 @@ public class Review {
         this.body = body;
     }
 
-    public Review(@NotBlank(message = "Name is required") @Size(min = 2, max = 50, message = "Username must contain min 2 and max 50 characters") String username, double rating, String body, Product product) {
-    }
+
 
     public Long getId() {
         return id;

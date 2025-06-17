@@ -8,6 +8,7 @@ public record ReviewRequest(
         @Size(min = 2, max = 50, message = "Username must contain min 2 and max 50 characters")
         String username,
         double rating,
-        String body
+        String body,
+        Long productId
 ) {
 }
