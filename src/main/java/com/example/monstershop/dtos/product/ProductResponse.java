@@ -6,6 +6,7 @@ import com.example.monstershop.models.Review;
 import java.util.List;
 
 public record ProductResponse(
+        Long id,
         String name,
         double price,
         String imageUrl,

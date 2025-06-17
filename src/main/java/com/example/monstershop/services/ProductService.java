@@ -22,9 +22,9 @@ public class ProductService {
         return products.stream().map(product -> ProductMapper.entityToDto(product)).toList();
     }
 
-    public List<ProductResponse> getProductById(Long productId) {
-        return productRepository.findById(productId).stream()
-                .map(product -> ProductMapper.entityToDto(product))
-                .collect(Collectors.toList());
+    public ProductResponse getProductById(Long productId) {
+        Product product = productRepository.findById(productId)
+                .orElseThrow(()->new RuntimeException("Producto no encontrado"));
+        return ProductMapper.entityToDto(product);
     }
 }
