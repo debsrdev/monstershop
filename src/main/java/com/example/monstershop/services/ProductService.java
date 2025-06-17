@@ -7,6 +7,7 @@ import com.example.monstershop.repositories.ProductRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class ProductService {
@@ -19,5 +20,11 @@ public class ProductService {
     public List<ProductResponse> getAllProducts() {
         List<Product> products = productRepository.findAll();
         return products.stream().map(product -> ProductMapper.entityToDto(product)).toList();
+    }
+
+    public List<ProductResponse> getProductById(Long productId) {
+        return productRepository.findById(productId).stream()
+                .map(product -> ProductMapper.entityToDto(product))
+                .collect(Collectors.toList());
     }
 }
