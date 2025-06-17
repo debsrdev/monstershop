@@ -18,6 +18,6 @@ public class ProductMapper {
         List<ReviewResponse> reviewDtos = product.getReviews().stream()
                 .map(ReviewMapper::entityToDto)
                 .toList();
-        return new ProductResponse(product.getName(), product.getPrice(), product.getImageUrl(), product.getRating(), product.getReviewCount(), product.isFeatured(), reviewDtos);
+        return new ProductResponse(product.getId(), product.getName(), product.getPrice(), product.getImageUrl(), product.getRating(), product.getReviewCount(), product.isFeatured(), reviewDtos);
     }
 }
