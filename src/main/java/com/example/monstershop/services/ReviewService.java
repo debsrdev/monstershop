@@ -17,6 +17,8 @@ public class ReviewService {
     }
 
     public List<ReviewResponse> getReviewsByProductId(Long productId) {
-        return reviewRepository.findByProductId(productId).stream().map(review -> ReviewMapper.entityToDto(review)).collect(Collectors.toList());
+        return reviewRepository.findByProductId(productId).stream()
+                .map(review -> ReviewMapper.entityToDto(review))
+                .collect(Collectors.toList());
     }
 }
