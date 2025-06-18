@@ -1,6 +1,7 @@
 package com.example.monstershop.services;
 
 import com.example.monstershop.dtos.product.ProductMapper;
+import com.example.monstershop.dtos.product.ProductRequest;
 import com.example.monstershop.dtos.product.ProductResponse;
 import com.example.monstershop.models.Product;
 import com.example.monstershop.repositories.ProductRepository;
@@ -26,5 +27,11 @@ public class ProductService {
         Product product = productRepository.findById(productId)
                 .orElseThrow(()->new RuntimeException("Producto no encontrado"));
         return ProductMapper.entityToDto(product);
+    }
+
+    public ProductResponse addProduct(ProductRequest productRequest) {
+        Product newProduct = ProductMapper.dtoToEntity(productRequest);
+        Product savedProduct = productRepository.save(newProduct);
+        return ProductMapper.entityToDto(savedProduct);
     }
 }
