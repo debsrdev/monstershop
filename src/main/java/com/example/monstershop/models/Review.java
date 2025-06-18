@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
+import java.util.Optional;
+
 @Entity
 @Table(name = "reviews")
 public class Review {
@@ -22,12 +24,12 @@ public class Review {
 
     }
 
-    public Review(String username, double rating, String body) {
+    public Review(String username, double rating, String body, Product product) {
         this.username = username;
         this.rating = rating;
         this.body = body;
+        this.product = product;
     }
-
 
 
     public Long getId() {
