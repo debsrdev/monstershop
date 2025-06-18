@@ -34,4 +34,26 @@ public class ProductService {
         Product savedProduct = productRepository.save(newProduct);
         return ProductMapper.entityToDto(savedProduct);
     }
+
+    public ProductResponse updateProduct(ProductRequest productRequest, Long productId) {
+        Product product = productRepository.findById(productId)
+                .orElseThrow(()->new RuntimeException("Producto no encontrado"));
+        product.setName(productRequest.name());
+        product.setPrice(productRequest.price());
+        product.setImageUrl(productRequest.imageUrl());
+        product.setRating(productRequest.rating());
+        product.setReviewCount(productRequest.reviewCount());
+        product.setFeatured(productRequest.featured());
+        Product savedProduct = productRepository.save(product);
+        return ProductMapper.entityToDto(savedProduct);
+    }
+
+    public ProductResponse deleteProduct(Long productId) {
+        Product product = productRepository.findById(productId)
+                .orElseThrow(()-> new RuntimeException("Producto no encontrado"));
+        // mapear a DTO antes de borrar
+        ProductResponse deletedProduct = ProductMapper.entityToDto(product);
+        productRepository.deleteById(productId);
+        return deletedProduct;
+    }
 }
